@@ -3,9 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { init, randomImgForUser } from './features/userSlice';
+import { CardItem } from './components/CardItem';
 
 function App() {
 const { loading, loadingNewImg, error, users} = useAppSelector(state => state.users);
+const {selectedUser} = useAppSelector(state => state.selectedUser);
 const dispatch = useAppDispatch();
 
 useEffect(() => {
@@ -17,25 +19,23 @@ const handlerOnClick = () => {
   dispatch(randomImgForUser(1));
 }
 
-console.log('DATA===>', users)
+useEffect(() => {
+  if (selectedUser) {
+    dispatch(randomImgForUser(selectedUser?.userId));
+  }
+}, [selectedUser])
+
+
+
+console.log('DATA===>', selectedUser)
   return (
-    <div className="App">
-      <header className="App-header">
-        <div onClick={() => handlerOnClick()}>
-          <img src={logo} className="App-logo" alt="logo" />
-        </div>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="AppContainer">
+      {users?.length && (
+        users.map((user) => (
+          <CardItem user={user} key={user?.userId} />
+        ))
+      )}
+
     </div>
   );
 }

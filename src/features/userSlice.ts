@@ -37,8 +37,8 @@ export const usersSlice = createSlice({
             state.loadingNewImg = true;
         })
         builder.addCase(randomImgForUser.fulfilled, (state, action) => {
-            const usersWithoutSelectUser = state.users?.filter((user: User) => user.userId !== action.payload.userId);
-            state.users = [...usersWithoutSelectUser || [], action.payload];
+            const indexUser = state.users?.findIndex((user: User) => user.userId === action.payload.userId);
+            indexUser && state.users?.splice(indexUser, 1, action.payload)
             state.loading = false;
             state.error = null;
         })
