@@ -1,42 +1,45 @@
 import React, {useEffect} from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { init, randomImgForUser } from './features/userSlice';
 import { CardItem } from './components/CardItem';
+import { UserList } from './components/UserList';
+import Box from '@mui/material/Box';
+import { makeStyles } from '@mui/styles';
+import { colors } from './utils/colors';
+import { BottonBar } from './components/BottomBar';
+
+const useStyles = makeStyles({
+  appContainer: {
+      width: '100vw', 
+      height: '100vh',
+      boxSizing: 'border-box',
+      overflow: 'hidden',
+      backgroundColor: colors.MAIN_BACKGROUND,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
+      
+  },
+  listContaner: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 20,
+  }
+});
 
 function App() {
-const { loading, loadingNewImg, error, users} = useAppSelector(state => state.users);
-const {selectedUser} = useAppSelector(state => state.selectedUser);
-const dispatch = useAppDispatch();
-
-useEffect(() => {
-  dispatch(init());
-}, [])
-
-const handlerOnClick = () => {
-  console.log('Press')
-  dispatch(randomImgForUser(1));
-}
-
-useEffect(() => {
-  if (selectedUser) {
-    dispatch(randomImgForUser(selectedUser?.userId));
-  }
-}, [selectedUser])
-
-
-
-console.log('DATA===>', selectedUser)
+  const classes = useStyles();
   return (
-    <div className="AppContainer">
-      {users?.length && (
-        users.map((user) => (
-          <CardItem user={user} key={user?.userId} />
-        ))
-      )}
-
-    </div>
+    <Box
+      className={classes.appContainer}
+    >
+      <Box
+        className={classes.listContaner}
+      >
+        <UserList />
+      </Box>
+      <BottonBar />
+    </Box>
   );
 }
 

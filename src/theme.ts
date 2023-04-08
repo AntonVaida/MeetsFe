@@ -30,13 +30,13 @@ const theme = createTheme({
         fontSize: 16,
         fontFamily: 'Roboto, sans-serif',
         color: colors.FONTS_COLOR,
-        fontWeight: 700,
+        fontWeight: 500,
     },
     subtitle2: {
         fontSize: 14,
         fontFamily: 'Roboto, sans-serif',
         color: colors.FONTS_COLOR,
-        fontWeight: 700,
+        fontWeight: 500,
     },
     body1: {
         fontSize: 14,
