@@ -8,7 +8,7 @@ import { makeStyles } from '@mui/styles';
 import { colors } from './utils/colors';
 import { BottonBar } from './components/BottomBar';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   appContainer: {
       width: '100vw', 
       height: '100vh',
@@ -17,15 +17,18 @@ const useStyles = makeStyles({
       backgroundColor: colors.MAIN_BACKGROUND,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'space-between'
-      
+      justifyContent: 'space-between', 
   },
   listContaner: {
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 20,
-  }
-});
+    [theme.breakpoints.down('sm')]: {
+      padding: 0,
+    },
+  },
+
+}));
 
 function App() {
   const classes = useStyles();

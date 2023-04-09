@@ -1,9 +1,5 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { User } from '../types/User';
 import { colors } from '../utils/colors';
@@ -20,7 +16,7 @@ type Props = {
     user: User,
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     cardContainer: {
         width: '23.5vw', 
         height: '26.6vh',
@@ -33,10 +29,18 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        [theme.breakpoints.down('sm')]: {
+            width: '100vw',
+            height: "92vh",
+            borderRadius: 0,
+          },
     },
     cardImg: {
         height: '100%',
         borderRadius: '3%',
+        [theme.breakpoints.down('sm')]: {
+            borderRadius: 0,
+          },
     },
     userNameText: {
         width: '100%',
@@ -64,7 +68,7 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
     }
-  });
+  }));
 
 
 export const CardItem:React.FC<Props> = ({user}) => {
@@ -72,7 +76,7 @@ export const CardItem:React.FC<Props> = ({user}) => {
     const { loadingNewImg } = useAppSelector((state) => state.users);
     const { selectedUser } = useAppSelector((state) => state.selectedUser);
     const classes = useStyles();
-    // console.log('ITEm===>', `${DEPLOY_IMG_URL}${user?.ImageUrl}`, user.speaking)
+
   return (
     <Box 
         className={classes.cardContainer}
@@ -83,11 +87,23 @@ export const CardItem:React.FC<Props> = ({user}) => {
     >
         {( loadingNewImg 
             && selectedUser 
-            && (selectedUser?.ImageUrl === user.ImageUrl)
+            && (selectedUser?.userId === user.userId)
             ) ? (
                 <CircularProgress color="secondary" />
             ) : (
                 <Box className={classes.imgContainer}>
+                    {user && user.name === 'You' ? (
+                    <CardMedia
+                        className={classes.cardImg}
+                        image={`${DEPLOY_IMG_URL}${user?.ImageUrl}`}
+                        title={user?.name}
+                        style={{
+                            height: user.camera ? '80%' : '7vw',
+                            width: user.camera ? '100%' : '7vw',
+                            borderRadius: user.camera ? 0 : '3.5vw',
+                        }}
+                    />
+                    ) : (
                     <CardMedia
                         className={classes.cardImg}
                         image={`${DEPLOY_IMG_URL}${user?.ImageUrl}`}
@@ -95,9 +111,10 @@ export const CardItem:React.FC<Props> = ({user}) => {
                         style={{
                             height: user.camera ? '100%' : '7vw',
                             width: user.camera ? '100%' : '7vw',
-                            borderRadius: user.camera ? '3%' : '3.5vw',
+                            borderRadius: user.camera ? undefined : '3.5vw',
                         }}
                     />
+                    )}
                 </Box>
             ) }
             <Box className={classes.microStatusContainer}>

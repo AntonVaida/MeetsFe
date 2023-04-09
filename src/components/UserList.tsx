@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { colors } from "../utils/colors";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -39,7 +38,7 @@ export const UserList = () => {
   }, [selectedUser]);
 
   return (
-    <Grid container spacing={2} className={classes.listContainer}>
+    <Grid container  className={classes.listContainer} >
       {loading || !users?.length ? (
         <Backdrop
             className={classes.backdrop}
@@ -49,7 +48,7 @@ export const UserList = () => {
         </Backdrop>
       ) : (
         users.map((user) => (
-          <Grid item key={user.userId} xs={3} sm={2} md={3}>
+          <Grid item key={user.userId} xs={12} sm={3} md={3} lg={3} xl={3}>
             <CardItem user={user} />
           </Grid>
         ))
