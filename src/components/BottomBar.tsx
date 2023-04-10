@@ -4,6 +4,7 @@ import { makeStyles } from '@mui/styles';
 import { InformButtonBlock } from "./InformButtonBlock";
 import { CentralButtonBlock } from "./CentralButtonBlock";
 import { MeetTitle } from "./MeetTitle";
+import { colors } from "../utils/colors";
 
 const useStyles = makeStyles((theme) => ({
     bottomContainer: {
@@ -12,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         zIndex: 6,
         display: 'flex',
+        backgroundColor: colors.MAIN_BACKGROUND,
         justifyContent: 'space-between',
         [theme.breakpoints.down('md')]: {
             justifyContent: 'center',
