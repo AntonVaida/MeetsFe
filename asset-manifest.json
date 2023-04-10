@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MeetsFe/static/css/main.5b0907e4.css",
-    "main.js": "/MeetsFe/static/js/main.71eec968.js",
+    "main.js": "/MeetsFe/static/js/main.097d746b.js",
     "static/js/787.23f40f9e.chunk.js": "/MeetsFe/static/js/787.23f40f9e.chunk.js",
     "static/media/roboto-all-500-normal.woff": "/MeetsFe/static/media/roboto-all-500-normal.0ab669b7a0d19b178f57.woff",
     "static/media/roboto-all-700-normal.woff": "/MeetsFe/static/media/roboto-all-700-normal.a457fde362a540fcadff.woff",
@@ -37,11 +37,11 @@
     "static/media/roboto-greek-ext-700-normal.woff2": "/MeetsFe/static/media/roboto-greek-ext-700-normal.bd9854c751441ccc1a70.woff2",
     "index.html": "/MeetsFe/index.html",
     "main.5b0907e4.css.map": "/MeetsFe/static/css/main.5b0907e4.css.map",
-    "main.71eec968.js.map": "/MeetsFe/static/js/main.71eec968.js.map",
+    "main.097d746b.js.map": "/MeetsFe/static/js/main.097d746b.js.map",
     "787.23f40f9e.chunk.js.map": "/MeetsFe/static/js/787.23f40f9e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b0907e4.css",
-    "static/js/main.71eec968.js"
+    "static/js/main.097d746b.js"
   ]
 }
